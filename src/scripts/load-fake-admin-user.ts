@@ -8,7 +8,7 @@ async function loadFakeAdminUser(username: string, password: string) {
     await client.connect();
 
     const saltRounds = 10;
-    const hash = bcrypt.hash(password, saltRounds);
+    const hash = await bcrypt.hash(password, saltRounds);
 
     await client.query('BEGIN');
 
