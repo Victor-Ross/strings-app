@@ -15,7 +15,7 @@ export function Form() {
     setErrors([]);
 
     if (password !== confirmPassword) {
-      errors.push('Passwords do not match');
+      setErrors((state) => [...state, 'Passwords do not match']);
       return;
     }
 
@@ -86,6 +86,11 @@ export function Form() {
       <button className="mt-4 p-3 bg-slate-900 rounded-lg" type="submit">
         Sign Up
       </button>
+      {errors.map((error) => (
+        <div key={error} className="text-red-600">
+          {error}
+        </div>
+      ))}
     </form>
   );
 }

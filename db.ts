@@ -5,7 +5,7 @@ loadEnvConfig(process.cwd());
 
 export async function getClient(): Promise<Client> {
   // Production
-  if (process.env.POSTGRES_URL) {
+  if (process.env.NODE_ENV === 'production') {
     const client = new Client({
       connectionString: process.env.POSTGRES_URL + '?sslmode=require',
     });
@@ -13,11 +13,11 @@ export async function getClient(): Promise<Client> {
   } else {
     // Development
     const client = new Client({
-      host: process.env.POSTGRES_HOST,
-      port: Number(process.env.POSTGRES_PORT),
-      user: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DATABASE,
+      host: process.env.POSTGRES_LOCAL_HOST,
+      port: Number(process.env.POSTGRES_LOCAL_PORT),
+      user: process.env.POSTGRES_LOCAL_USER,
+      password: process.env.POSTGRES_LOCAL_PASSWORD,
+      database: process.env.POSTGRES_LOCAL_DATABASE,
     });
 
     return client;
