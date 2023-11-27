@@ -14,7 +14,15 @@ export function FeedContainer() {
 
   return (
     <div>
-      {pages} <button onClick={() => setCount(count + 1)}>Load More</button>
+      {pages}
+      <div className="flex justify-center">
+        <button
+          className="bg-slate-900 p-2 rounded-lg"
+          onClick={() => setCount(count + 1)}
+        >
+          Load More
+        </button>
+      </div>
     </div>
   );
 }
