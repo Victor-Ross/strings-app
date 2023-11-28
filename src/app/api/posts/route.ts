@@ -39,3 +39,16 @@ export async function GET(request: Request) {
 
   return NextResponse.json({ data: res.rows });
 }
+
+export async function POST(request: Request) {
+  const body = await request.json();
+
+  const jwtPayload = await getJWTPayload();
+
+  const res = await sql(
+    'INSERT INTO posts(user_id, content) VALUES($1, $2) RETURNING *',
+    [jwtPayload.sub, body.content]
+  );
+
+  return NextResponse.json({ data: res.rows[0] }, { status: 201 });
+}
