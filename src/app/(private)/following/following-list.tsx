@@ -28,7 +28,7 @@ export function FollowingList({ index }: FollowingListProps) {
     <ul>
       {followerData.data.map((user) => (
         <li className="my-5" key={user.id}>
-          <User href="/" user={user} />
+          <User href={user.username} user={user} />
         </li>
       ))}
     </ul>
