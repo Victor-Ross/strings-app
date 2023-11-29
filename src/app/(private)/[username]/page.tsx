@@ -1,3 +1,4 @@
+import { PostContainer } from '@/app/components/post-container';
 import { UserPageHeader } from './user-page-header';
 
 interface UserPageProps {
@@ -10,7 +11,7 @@ export default function UserPage({ params }: UserPageProps) {
   return (
     <div>
       <UserPageHeader username={params.username} />
-      <div>posts container {params.username}</div>
+      <PostContainer username={params.username} />
     </div>
   );
 }

@@ -32,7 +32,18 @@ export async function GET(request: Request) {
     `;
 
   if (username) {
-    // TODO
+    const userRes = await sql('SELECT * FROM users WHERE username = $1', [
+      username,
+    ]);
+
+    if (userRes.rowCount === 0) {
+      return NextResponse.json({ error: 'Not found' }, { status: 404 });
+    }
+
+    const user = userRes.rows[0];
+    const postsRes = await sql(statement, [user.id, limit, offset]);
+
+    return NextResponse.json({ data: postsRes.rows });
   }
 
   const res = await sql(statement, [jwtPayload.sub, limit, offset]);

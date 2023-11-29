@@ -50,15 +50,20 @@ export function UserPageHeader({ username }: UserPageHeaderProps) {
   }
 
   return (
-    <header>
-      <div>
-        <h1>{username}</h1>
-        {dataFollow.data.length > 0 ? (
-          <button onClick={handleUnfollow}>Unfollow</button>
-        ) : (
-          <button onClick={handleFollow}>Follow</button>
-        )}
-      </div>
+    <header className="w-full flex flex-row justify-between bg-slate-800 p-2 rounded-lg">
+      <h1 className="text-lg font-bold">{username}</h1>
+      {dataFollow.data.length > 0 ? (
+        <button
+          className="bg-slate-900 p-2 rounded-lg"
+          onClick={handleUnfollow}
+        >
+          Unfollow
+        </button>
+      ) : (
+        <button className="bg-slate-900 p-2 rounded-lg" onClick={handleFollow}>
+          Follow
+        </button>
+      )}
     </header>
   );
 }
