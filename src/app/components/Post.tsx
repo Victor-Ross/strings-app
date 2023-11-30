@@ -4,9 +4,10 @@ import Image from 'next/image';
 
 interface PostProps {
   post: IPost;
+  showEditButton?: boolean;
 }
 
-export function Post({ post }: PostProps) {
+export function Post({ post, showEditButton = false }: PostProps) {
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
@@ -43,6 +44,16 @@ export function Post({ post }: PostProps) {
         </div>
         <div>{post.content}</div>
       </div>
+      {showEditButton && (
+        <div className="text-right flex-grow">
+          <Link
+            className="text-green-400"
+            href={`/profile/edit-post/${post.id}`}
+          >
+            Edit
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

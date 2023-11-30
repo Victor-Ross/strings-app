@@ -13,7 +13,7 @@ export function Form() {
     event.preventDefault();
 
     const res = await fetch('/api/login', {
-      method: 'post',
+      method: 'POST',
       body: JSON.stringify({
         username,
         password,

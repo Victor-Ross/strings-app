@@ -5,15 +5,26 @@ import { PostList } from './post-list';
 
 interface PostContainerProps {
   username: string;
+  showEditButton?: boolean;
 }
 
-export function PostContainer({ username }: PostContainerProps) {
+export function PostContainer({
+  username,
+  showEditButton = false,
+}: PostContainerProps) {
   const [count, setCount] = useState(1);
 
   const pages = [];
 
   for (let i = 0; i < count; i++) {
-    pages.push(<PostList index={i} username={username} key={i} />);
+    pages.push(
+      <PostList
+        index={i}
+        username={username}
+        key={i}
+        showEditButton={showEditButton}
+      />
+    );
   }
 
   return (

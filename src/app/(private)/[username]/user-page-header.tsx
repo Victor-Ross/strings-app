@@ -43,7 +43,7 @@ export function UserPageHeader({ username }: UserPageHeaderProps) {
 
   async function handleFollow() {
     const res = await fetch('/api/follows/', {
-      method: 'post',
+      method: 'POST',
       body: JSON.stringify({
         user_id: user.id,
       }),

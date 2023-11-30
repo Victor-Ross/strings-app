@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { User } from '../types';
+import { IUser } from '../types';
 import Image from 'next/image';
 
 interface UserProps {
-  user: User;
+  user: IUser;
   href: string;
 }
 
