@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import * as _ from 'lodash';
 import { IUser } from '../types';
 
 type SearchResult = {
@@ -9,6 +10,8 @@ type SearchResult = {
 
 export function SearchBar() {
   const [searchResults, setSearchResults] = useState<IUser[]>([]);
+
+  const debouncedFetchSearchResults = _.debounce(fetchSearchResuts, 500);
 
   async function fetchSearchResuts(searchText: string) {
     const res = await fetch(`/api/search?q=${searchText}`);
@@ -24,7 +27,7 @@ export function SearchBar() {
       setSearchResults([]);
       return;
     }
-    await fetchSearchResuts(text);
+    await debouncedFetchSearchResults(text);
   }
 
   return (
